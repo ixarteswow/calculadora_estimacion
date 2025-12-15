@@ -335,6 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const helpBtn = document.getElementById('helpBtn');
 
     function toggleHelpModal(show) {
+        const content = document.getElementById('workerListContent');
         if(show) {
             workerListModal.classList.remove('hidden');
             workerListModal.classList.add('flex');
@@ -358,11 +359,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     workerListContainer.appendChild(item);
                 });
             }
+            // Trigger animation
             setTimeout(() => {
-                document.getElementById('workerListContent').classList.remove('scale-95', 'opacity-0');
+                content.classList.remove('scale-95', 'opacity-0', 'translate-y-full');
             }, 10);
         } else {
-             document.getElementById('workerListContent').classList.add('scale-95', 'opacity-0');
+             content.classList.add('scale-95', 'opacity-0', 'translate-y-full');
              setTimeout(() => {
                 workerListModal.classList.add('hidden');
                 workerListModal.classList.remove('flex');
@@ -370,7 +372,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    const openDirectoryBtn = document.getElementById('openDirectoryBtn');
+
     if(helpBtn) helpBtn.addEventListener('click', () => toggleHelpModal(true));
+    if(openDirectoryBtn) openDirectoryBtn.addEventListener('click', () => toggleHelpModal(true));
     if(closeHelpBtn) closeHelpBtn.addEventListener('click', () => toggleHelpModal(false));
 
 });

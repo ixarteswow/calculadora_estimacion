@@ -96,38 +96,43 @@
     <div class="cloud c3"></div>
 
     <!-- Main Container (Centered) -->
-    <div id="appLayout" class="flex items-center justify-center p-8 gap-12 transition-all duration-500 min-h-screen">
+    <div id="appLayout" class="flex flex-col md:flex-row items-center justify-center p-4 md:p-8 gap-6 md:gap-12 transition-all duration-500 min-h-screen w-full">
         
         <!-- BENTO GRID CONTAINER -->
-        <div class="grid grid-cols-2 gap-5 w-full max-w-[600px] h-[720px] relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 w-full max-w-md md:max-w-[700px] relative">
             
             <!-- HEADER TILE (Span 2) -->
-            <div class="col-span-2 glass-panel rounded-[2rem] p-8 flex items-center justify-between relative overflow-hidden group">
+            <div class="col-span-1 md:col-span-2 glass-panel rounded-3xl md:rounded-[2rem] p-6 md:p-8 flex items-center justify-between relative overflow-hidden group">
                 <div class="relative z-10">
-                    <h1 class="text-4xl font-black text-gray-800 tracking-tighter mb-1">Estimación</h1>
+                    <h1 class="text-3xl md:text-4xl font-black text-gray-800 tracking-tighter mb-1">Estimación</h1>
                     <div class="flex items-center space-x-2">
                         <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                        <p class="text-blue-500 font-bold text-xs uppercase tracking-widest">Aurora System v2.0</p>
+                        <p class="text-blue-500 font-bold text-[10px] md:text-xs uppercase tracking-widest">Aurora System v2.0</p>
                     </div>
                 </div>
                 
                 <!-- Status Pill -->
-                <div class="bg-white/50 backdrop-blur-md border border-white/60 px-4 py-2 rounded-full flex items-center space-x-2 shadow-sm">
+                <div class="bg-white/50 backdrop-blur-md border border-white/60 px-3 py-1.5 md:px-4 md:py-2 rounded-full flex items-center space-x-2 shadow-sm">
                      <span class="relative flex h-2 w-2">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                     </span>
-                    <span class="text-[10px] font-bold text-gray-500 tracking-wide">ONLINE</span>
+                    <span class="text-[9px] md:text-[10px] font-bold text-gray-500 tracking-wide">ONLINE</span>
                 </div>
 
                 <!-- Decorative Gradient Blob -->
-                <div class="absolute -right-10 -top-10 w-40 h-40 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
+                <div class="absolute -right-10 -top-10 w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
             </div>
 
             <!-- WORKER TILE (Col 1) -->
-            <div class="glass-panel rounded-[2.5rem] p-6 relative flex flex-col justify-between group hover:shadow-lg transition-all border border-white/40">
-                <div class="flex justify-between items-start">
-                    <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">01. Worker</label>
+            <div class="glass-panel rounded-3xl md:rounded-[2.5rem] p-6 relative flex flex-col justify-between group hover:shadow-lg transition-all border border-white/40 min-h-[180px]">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">01. Worker</label>
+                        <button id="openDirectoryBtn" class="p-1.5 bg-blue-50 text-blue-500 rounded-lg hover:bg-blue-100 transition-colors" title="Ver directorio">
+                            <svg class="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        </button>
+                    </div>
                     <div id="workerValidationIcon" class="hidden bg-green-100 p-1 rounded-full text-green-600">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                     </div>
@@ -135,21 +140,21 @@
 
                 <div class="relative mt-2">
                     <input type="text" id="workerIdInput" placeholder="A101" 
-                        class="text-4xl font-black text-gray-800 w-full bg-transparent outline-none placeholder-gray-200 uppercase tracking-tight">
+                        class="text-4xl font-black text-gray-800 w-full bg-transparent outline-none placeholder-gray-200 uppercase tracking-tight py-2">
                     <p class="text-[10px] text-gray-400 font-medium mt-1">Ingrese ID de empleado</p>
                 </div>
 
                 <!-- Profile Overlay (Absolute inside tile) -->
-                <div id="profileCard" class="absolute inset-0 bg-white/95 backdrop-blur-xl z-20 flex flex-col items-center justify-center text-center p-4 rounded-[2.5rem] opacity-0 pointer-events-none scale-95 transition-all duration-300">
-                    <img id="workerAvatar" src="" class="w-16 h-16 rounded-2xl shadow-lg mb-3 object-cover">
-                    <h3 id="workerName" class="text-lg font-bold text-gray-800 leading-tight">--</h3>
-                    <p id="workerRole" class="text-[10px] font-bold text-blue-500 uppercase tracking-widest mb-2">--</p>
+                <div id="profileCard" class="absolute inset-0 bg-white/95 backdrop-blur-xl z-20 flex flex-col items-center justify-center text-center p-4 rounded-3xl md:rounded-[2.5rem] opacity-0 pointer-events-none scale-95 transition-all duration-300">
+                    <img id="workerAvatar" src="" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl shadow-lg mb-2 object-cover">
+                    <h3 id="workerName" class="text-base md:text-lg font-bold text-gray-800 leading-tight">--</h3>
+                    <p id="workerRole" class="text-[9px] md:text-[10px] font-bold text-blue-500 uppercase tracking-widest mb-2">--</p>
                      <span id="workerStatus" class="text-[9px] px-2 py-0.5 bg-green-100 text-green-700 rounded-full font-bold">ACTIVO</span>
                 </div>
             </div>
 
             <!-- DURATION TILE (Col 2) -->
-             <div class="glass-panel rounded-[2.5rem] p-6 relative flex flex-col justify-between group hover:shadow-lg transition-all border border-white/40">
+             <div class="glass-panel rounded-3xl md:rounded-[2.5rem] p-6 relative flex flex-col justify-between group hover:shadow-lg transition-all border border-white/40 min-h-[180px]">
                 <div class="flex justify-between items-start">
                     <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">02. Time</label>
                     <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -159,50 +164,50 @@
                      <select id="sizeSelect" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"></select>
                      
                      <!-- Visual Mock for Select -->
-                     <div class="w-full">
+                     <div class="w-full pointer-events-none">
                         <p id="durationDisplay" class="text-3xl font-black text-gray-800 leading-none">Select...</p>
                          <p class="text-[10px] text-gray-400 font-medium mt-2">Toque para cambiar</p>
                      </div>
 
                      <!-- Custom Input Overlay -->
-                     <div id="customInputContainer" class="absolute inset-0 bg-white/95 backdrop-blur-xl z-20 flex flex-col items-center justify-center rounded-[2.5rem] hidden opacity-0 transition-opacity duration-300">
+                     <div id="customInputContainer" class="absolute inset-0 bg-white/95 backdrop-blur-xl z-20 flex flex-col items-center justify-center rounded-3xl md:rounded-[2.5rem] hidden opacity-0 transition-opacity duration-300">
                         <input type="number" id="customDurationInput" placeholder="00" min="1"
-                            class="text-4xl font-black text-center text-gray-800 w-full bg-transparent outline-none">
+                            class="text-4xl font-black text-center text-gray-800 w-full bg-transparent outline-none py-2">
                          <p class="text-[10px] text-blue-500 font-bold uppercase mt-2">Horas Exactas</p>
                      </div>
                 </div>
             </div>
 
             <!-- RESULT / PLACEHOLDER TILE (Span 2, Main Area) -->
-            <div class="col-span-2 glass-panel rounded-[2.5rem] p-0 relative overflow-hidden group h-[280px]">
+            <div class="col-span-1 md:col-span-2 glass-panel rounded-3xl md:rounded-[2.5rem] p-0 relative overflow-hidden group min-h-[220px] md:h-[280px]">
                 
                 <!-- EMPTY STATE -->
-                <div id="emptyState" class="absolute inset-0 flex flex-col items-center justify-center p-8 transition-all duration-500 bg-white/30">
-                    <div class="w-20 h-20 rounded-full border-4 border-dashed border-white/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
-                         <svg class="w-8 h-8 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                <div id="emptyState" class="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-8 transition-all duration-500 bg-white/30">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-dashed border-white/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
+                         <svg class="w-6 h-6 md:w-8 md:h-8 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-600/50">Esperando Señal</h2>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-600/50">Esperando Señal</h2>
                 </div>
 
                 <!-- RESULT STATE -->
-                 <div id="resultSection" class="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600 p-8 flex flex-col justify-between hidden opacity-0 translate-y-full transition-all duration-500">
+                 <div id="resultSection" class="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600 p-6 md:p-8 flex flex-col justify-between hidden opacity-0 translate-y-full transition-all duration-500">
                     <!-- Aurora Effect -->
                     <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-[80px]"></div>
                     
                     <div class="relative z-10 flex justify-between items-start">
-                         <span class="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-white/10">Estimación Final</span>
-                         <button id="helpBtn" class="text-white/60 hover:text-white transition-colors">
+                         <span class="bg-white/20 backdrop-blur-md text-white text-[9px] md:text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-white/10">Estimación Final</span>
+                         <button id="helpBtn" class="text-white/60 hover:text-white transition-colors p-2 -mr-2 -mt-2">
                             <span class="sr-only">Info</span>
                              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                          </button>
                     </div>
 
-                    <div class="relative z-10 text-center">
-                        <p id="finalDate" class="text-5xl font-black text-white drop-shadow-lg tracking-tight">--</p>
+                    <div class="relative z-10 text-center my-auto md:my-0">
+                        <p id="finalDate" class="text-4xl md:text-5xl font-black text-white drop-shadow-lg tracking-tight">--</p>
                     </div>
 
-                    <div class="relative z-10 bg-black/20 backdrop-blur-md rounded-2xl p-4 border border-white/10">
-                        <div id="timelineContainer" class="flex items-center justify-center space-x-4">
+                    <div class="relative z-10 bg-black/20 backdrop-blur-md rounded-2xl p-3 md:p-4 border border-white/10">
+                        <div id="timelineContainer" class="flex flex-wrap items-center justify-center gap-2">
                             <!-- Events JS -->
                         </div>
                     </div>
@@ -210,11 +215,12 @@
             </div>
 
             <!-- ACTION BAR (Floating) -->
-            <div class="col-span-2 mt-2">
+            <div class="col-span-1 md:col-span-2 mt-2">
                  <div class="bg-white/60 backdrop-blur-2xl rounded-2xl p-2 flex space-x-2 shadow-2xl border border-white/40">
-                    <button class="flex-1 py-4 text-gray-500 font-bold hover:bg-white/50 rounded-xl transition-all" onclick="location.reload()">Reset</button>
-                    <button class="flex-[2] bg-gray-900 text-white font-bold rounded-xl py-4 shadow-xl hover:scale-[1.02] active:scale-95 transition-all" onclick="updateCalculation()">
-                        Calculadora Aurora
+                    <button class="flex-1 py-3 md:py-4 text-gray-500 font-bold hover:bg-white/50 rounded-xl transition-all text-sm md:text-base" onclick="location.reload()">Reset</button>
+                    <button class="flex-[2] bg-gray-900 text-white font-bold rounded-xl py-3 md:py-4 shadow-xl active:scale-95 transition-all text-sm md:text-base flex items-center justify-center space-x-2" onclick="updateCalculation()">
+                        <span>Calculadora Aurora</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </button>
                  </div>
             </div>
@@ -222,20 +228,21 @@
         </div>
 
         <!-- Worker List Modal (Re-implemented as Backdrop) -->
-         <div id="workerListModal" class="absolute inset-0 z-50 bg-black/20 backdrop-blur-md hidden flex items-center justify-center p-8 transition-opacity duration-300">
-            <div class="bg-white rounded-[2rem] p-8 max-w-sm w-full shadow-2xl scale-95 opacity-0 transition-all duration-300" id="workerListContent">
+         <div id="workerListModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-md hidden flex items-end md:items-center justify-center transition-opacity duration-300">
+            <div class="bg-white rounded-t-[2rem] md:rounded-[2rem] p-6 md:p-8 w-full md:max-w-sm shadow-2xl scale-100 md:scale-95 opacity-0 transition-all duration-300 translate-y-full md:translate-y-0" id="workerListContent">
                  <div class="flex justify-between items-center mb-6">
                     <h3 class="text-xl font-bold text-gray-800">Directorio</h3>
                     <button id="closeHelpBtn" class="bg-gray-100 p-2 rounded-full hover:bg-gray-200">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
                 </div>
-                 <div class="space-y-4 max-h-[400px] overflow-y-auto" id="workerListContainer"></div>
+                 <div class="space-y-3 max-h-[60vh] overflow-y-auto pb-8 md:pb-0" id="workerListContainer"></div>
             </div>
          </div>
 
-         <!-- Calendar Panel Side (Keeping logic logic but hidden or adapted?) -->
-         <div id="calendarPanel" class="hidden xl:flex flex-col glass-panel rounded-[2rem] p-8 w-[350px] h-[720px] transition-all opacity-0 translate-x-10">
+         <!-- Calendar Panel Side (Hidden on Mobile, Modal on Tablet?) -->
+         <!-- For now, keep hidden on mobile, show on XL+ as before but controlled -->
+         <div id="calendarPanel" class="hidden xl:flex flex-col glass-panel rounded-[2rem] p-8 w-[350px] shrink-0 transition-all opacity-0 translate-x-10 h-auto self-start sticky top-8">
              <h2 class="text-xl font-bold text-gray-800 mb-6">Agenda</h2>
              <p id="calendarMonthTitle" class="text-sm font-bold text-blue-500 uppercase tracking-wide mb-4">--</p>
              <div id="calendarGrid" class="grid grid-cols-7 gap-2 text-sm"></div>
