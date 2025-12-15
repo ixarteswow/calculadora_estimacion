@@ -196,16 +196,21 @@ document.addEventListener('DOMContentLoaded', () => {
         workerValidationIcon.classList.add('hidden');
     }
 
+    function resetView() {
+        resultSection.classList.add('hidden', 'translate-y-full', 'opacity-0');
+        emptyState.classList.remove('hidden', 'scale-95', 'opacity-0');
+        calendarPanel.classList.add('hidden', 'opacity-0', 'translate-x-10');
+    }
+
     workerIdInput.addEventListener('input', (e) => {
         const id = e.target.value.toUpperCase();
         state.workerId = null; 
-        // Live update empty
-        const emptyResult = updateCalculation(); 
+        
+        resetView();
 
         if (WorkerDatabase[id]) {
             state.workerId = id;
             showWorkerProfile(WorkerDatabase[id]);
-            updateCalculation();
         } else {
              hideWorkerProfile();
         }
@@ -248,24 +253,48 @@ document.addEventListener('DOMContentLoaded', () => {
             customInputContainer.classList.add('hidden', 'opacity-0');
             state.durationMinutes = parseInt(val);
         }
-        updateCalculation();
+        resetView();
     });
 
     customDurationInput.addEventListener('input', (e) => {
         if(state.isCustom) {
             state.durationMinutes = parseInt(e.target.value) * 60 || 0;
-            updateCalculation();
+            resetView();
         }
     });
 
     // --- 3. Main Calculation Logic ---
     window.updateCalculation = function() { // Global for button click
-        if (!state.workerId || state.durationMinutes <= 0) {
-            resultSection.classList.add('hidden', 'translate-y-full', 'opacity-0');
-            emptyState.classList.remove('hidden', 'scale-95', 'opacity-0');
-            
-            calendarPanel.classList.add('hidden', 'opacity-0', 'translate-x-10');
-            return false;
+        let isValid = true;
+        
+        // Validate Worker
+        if (!state.workerId) {
+            const el = workerIdInput.closest('.glass-panel');
+            el.classList.remove('border-white/40'); // Remove default border
+            el.classList.add('animate-shake', 'border-red-500', 'bg-red-50/50');
+            setTimeout(() => {
+                el.classList.remove('animate-shake', 'border-red-500', 'bg-red-50/50');
+                el.classList.add('border-white/40'); // Restore default
+            }, 400);
+            isValid = false;
+        }
+
+        // Validate Duration
+        if (state.durationMinutes <= 0) {
+            const el = sizeSelect.closest('.glass-panel');
+            el.classList.remove('border-white/40');
+            el.classList.add('animate-shake', 'border-red-500', 'bg-red-50/50');
+           setTimeout(() => {
+                el.classList.remove('animate-shake', 'border-red-500', 'bg-red-50/50');
+                el.classList.add('border-white/40');
+            }, 400);
+            isValid = false;
+        }
+
+        if(!isValid) {
+             resultSection.classList.add('hidden', 'translate-y-full', 'opacity-0');
+             emptyState.classList.remove('hidden', 'scale-95', 'opacity-0');
+             return false;
         }
 
         const now = new Date(); 
